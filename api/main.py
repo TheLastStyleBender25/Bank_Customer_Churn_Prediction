@@ -10,3 +10,17 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.include_router(PredictionRouter)
+
+
+@app.get("/")
+async def root():
+    return {
+        "name": "Bank Customer Churn Prediction API",
+        "version": "1.0.0",
+        "description": "Gradient Boosting model for predicting bank customer churn",
+        "endpoints": {
+            "documentation": "/docs",
+            "health": "/health",
+            "prediction": "/predict/"
+        }
+    }
